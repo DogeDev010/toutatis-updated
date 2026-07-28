@@ -113,17 +113,18 @@ def main():
     print("Informations about     : " + infos["username"])
     print("userID                 : " + infos["userID"])
     print("Full Name              : " + infos["full_name"])
-    print("Verified               : " + str(infos['is_verified']) + " | Is buisness Account : " + str(
+    print("Verified               : " + str(infos['is_verified']) + " \nIs buisness Account    : " + str(
         infos["is_business"]))
     print("Is private Account     : " + str(infos["is_private"]))
     print(
-        "Follower               : " + str(infos["follower_count"]) + " | Following : " + str(infos["following_count"]))
+        "Followers              : " + str(infos["follower_count"]) + " | Following : " + str(infos["following_count"]))
     print("Number of posts        : " + str(infos["media_count"]))
     # print("Number of tag in posts : "+str(infos["following_tag_count"]))
     if infos["external_url"]:
         print("External url           : " + infos["external_url"])
-    print("IGTV posts             : " + str(infos["total_igtv_videos"]))
-    print("Biography              : " + (f"""\n{" " * 25}""").join(infos["biography"].split("\n")))
+    if "total_igtv_videos" in infos: 
+        print("IGTV posts : "+str(infos["total_igtv_videos"]))
+    print("Bio                    : " + (f"""\n{" " * 25}""").join(infos["biography"].split("\n")))
     print("Linked WhatsApp        : " + str(infos["is_whatsapp_linked"]))
     print("Memorial Account       : " + str(infos["is_memorialized"]))
     print("New Instagram user     : " + str(infos["is_new_to_instagram"]))
@@ -131,6 +132,8 @@ def main():
     if "public_email" in infos.keys():
         if infos["public_email"]:
             print("Public Email           : " + infos["public_email"])
+    else:
+        print("Email                  :No public email found")
 
     if "public_phone_number" in infos.keys():
         if str(infos["public_phone_number"]):
@@ -143,6 +146,8 @@ def main():
             except:  # except what ??
                 pass  # pass what ??
             print("Public Phone number    : " + phonenr)
+    else:
+        print("Phone                  :No public phone number found")
 
     other_infos = advanced_lookup(infos["username"])
 
@@ -169,3 +174,4 @@ def main():
                 print("No obfuscated phone found")
     print("-" * 24)
     print("Profile Picture        : " + infos["hd_profile_pic_url_info"]["url"])
+    print("\n")
